@@ -26,6 +26,12 @@ public class Terrain {
     @Column
     private Double price;
 
+    @Column
+    private String name ; 
+    
+    @Column
+    private String type;
+    
     @Column(name = "\"description\"")
     private String description;
 
@@ -101,5 +107,22 @@ public class Terrain {
     public void setClosedCourtList(final Set<ClosedCourt> closedCourtList) {
         this.closedCourtList = closedCourtList;
     }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+    
 
 }

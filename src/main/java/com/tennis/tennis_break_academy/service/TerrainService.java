@@ -54,6 +54,8 @@ public class TerrainService {
         terrainDTO.setStatus(terrain.getStatus());
         terrainDTO.setPrice(terrain.getPrice());
         terrainDTO.setDescription(terrain.getDescription());
+        terrainDTO.setName(terrain.getName());
+        terrainDTO.setType(terrain.getType());
         return terrainDTO;
     }
 
@@ -62,6 +64,8 @@ public class TerrainService {
         terrain.setStatus(terrainDTO.getStatus());
         terrain.setPrice(terrainDTO.getPrice());
         terrain.setDescription(terrainDTO.getDescription());
+        terrain.setName(terrainDTO.getName());
+        terrain.setType(terrainDTO.getType());
         return terrain;
     }
 
