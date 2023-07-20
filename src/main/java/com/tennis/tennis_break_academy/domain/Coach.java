@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
@@ -35,7 +36,11 @@ public class Coach {
 
     @Column
     private String phoneNumber;
-
+    
+    @Lob
+    @Column(length = 20480)
+    private byte[] image;
+    
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reservation_cours_id")
     private ReservationCours reservationCoursId;
@@ -95,5 +100,14 @@ public class Coach {
     public void setReservationCoursId(final ReservationCours reservationCoursId) {
         this.reservationCoursId = reservationCoursId;
     }
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+    
 
 }

@@ -8,6 +8,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+
 import java.time.LocalDateTime;
 
 
@@ -36,6 +38,10 @@ public class Reservation {
     @JoinColumn(name = "user_id_id")
     private User userId;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reservation_course_id")
+    private ReservationCours reservationCoursId;
+    
     public Integer getIdReservation() {
         return idReservation;
     }

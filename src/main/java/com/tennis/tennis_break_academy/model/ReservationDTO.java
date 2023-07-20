@@ -19,7 +19,18 @@ public class ReservationDTO {
 
     private Integer userId;
 
-    public Integer getIdReservation() {
+    private Integer reservationCourseId ;
+    
+    
+    public Integer getReservationCourseId() {
+		return reservationCourseId;
+	}
+
+	public void setReservationCourseId(Integer reservationCourseId) {
+		this.reservationCourseId = reservationCourseId;
+	}
+
+	public Integer getIdReservation() {
         return idReservation;
     }
 
