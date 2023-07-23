@@ -1,6 +1,6 @@
 package com.tennis.tennis_break_academy.service;
 
-import com.tennis.tennis_break_academy.domain.User;
+import com.tennis.tennis_break_academy.domain.UserEntiy;
 import com.tennis.tennis_break_academy.model.UserDTO;
 import com.tennis.tennis_break_academy.repos.UserRepository;
 import com.tennis.tennis_break_academy.util.NotFoundException;
@@ -19,7 +19,7 @@ public class UserService {
     }
 
     public List<UserDTO> findAll() {
-        final List<User> users = userRepository.findAll(Sort.by("idUser"));
+        final List<UserEntiy> users = userRepository.findAll(Sort.by("idUser"));
         return users.stream()
                 .map(user -> mapToDTO(user, new UserDTO()))
                 .toList();
@@ -32,13 +32,13 @@ public class UserService {
     }
 
     public Integer create(final UserDTO userDTO) {
-        final User user = new User();
+        final UserEntiy user = new UserEntiy();
         mapToEntity(userDTO, user);
         return userRepository.save(user).getIdUser();
     }
 
     public void update(final Integer idUser, final UserDTO userDTO) {
-        final User user = userRepository.findById(idUser)
+        final UserEntiy user = userRepository.findById(idUser)
                 .orElseThrow(NotFoundException::new);
         mapToEntity(userDTO, user);
         userRepository.save(user);
@@ -48,7 +48,7 @@ public class UserService {
         userRepository.deleteById(idUser);
     }
 
-    private UserDTO mapToDTO(final User user, final UserDTO userDTO) {
+    private UserDTO mapToDTO(final UserEntiy user, final UserDTO userDTO) {
         userDTO.setIdUser(user.getIdUser());
         userDTO.setFirstName(user.getFirstName());
         userDTO.setLastName(user.getLastName());
@@ -60,7 +60,7 @@ public class UserService {
         return userDTO;
     }
 
-    private User mapToEntity(final UserDTO userDTO, final User user) {
+    private UserEntiy mapToEntity(final UserDTO userDTO, final UserEntiy user) {
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setAge(userDTO.getAge());

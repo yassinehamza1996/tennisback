@@ -2,10 +2,18 @@ package com.tennis.tennis_break_academy.model;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.*;
 
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class UserDTO {
-
+	
+    private String password;
+    private String username;
+    
     private Integer idUser;
 
     @Size(max = 255)
@@ -29,7 +37,25 @@ public class UserDTO {
     @Size(max = 255)
     private String role;
 
-    public Integer getIdUser() {
+    
+    
+    public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public Integer getIdUser() {
         return idUser;
     }
 

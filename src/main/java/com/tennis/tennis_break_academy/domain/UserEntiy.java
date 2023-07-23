@@ -1,16 +1,25 @@
 package com.tennis.tennis_break_academy.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
 @Entity
-public class User {
+@Table(name="user")
+public class UserEntiy {
 
     @Id
     @Column(nullable = false, updatable = false)
@@ -34,14 +43,46 @@ public class User {
 
     @Column
     private String mailAddress;
-
+    
+    @Column(unique = true) 
+    private String username;
+    
     @Column(name = "\"role\"")
     private String role;
-
+    @Column
+    private String password ;
+    
     @OneToMany(mappedBy = "userId")
     private Set<Reservation> reservationList;
+    
+    @ManyToMany(fetch = FetchType.EAGER , cascade = CascadeType.MERGE)
+    @JoinTable( name = "T_Users_Roles_Associations")
+    private List<Role> roles = new ArrayList<>();
+    
+    
 
-    public Integer getIdUser() {
+    
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public UserEntiy() {
+		super();
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	public Integer getIdUser() {
         return idUser;
     }
 
@@ -112,5 +153,15 @@ public class User {
     public void setReservationList(final Set<Reservation> reservationList) {
         this.reservationList = reservationList;
     }
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+    
+    
 
 }

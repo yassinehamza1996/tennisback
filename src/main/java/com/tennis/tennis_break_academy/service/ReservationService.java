@@ -2,7 +2,7 @@ package com.tennis.tennis_break_academy.service;
 
 import com.tennis.tennis_break_academy.domain.Reservation;
 import com.tennis.tennis_break_academy.domain.Terrain;
-import com.tennis.tennis_break_academy.domain.User;
+import com.tennis.tennis_break_academy.domain.UserEntiy;
 import com.tennis.tennis_break_academy.model.ReservationDTO;
 import com.tennis.tennis_break_academy.repos.ReservationRepository;
 import com.tennis.tennis_break_academy.repos.TerrainRepository;
@@ -76,7 +76,7 @@ public class ReservationService {
         final Terrain idTerrain = reservationDTO.getIdTerrain() == null ? null : terrainRepository.findById(reservationDTO.getIdTerrain())
                 .orElseThrow(() -> new NotFoundException("idTerrain not found"));
         reservation.setIdTerrain(idTerrain);
-        final User userId = reservationDTO.getUserId() == null ? null : userRepository.findById(reservationDTO.getUserId())
+        final UserEntiy userId = reservationDTO.getUserId() == null ? null : userRepository.findById(reservationDTO.getUserId())
                 .orElseThrow(() -> new NotFoundException("userId not found"));
         reservation.setUserId(userId);
         return reservation;

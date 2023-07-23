@@ -36,7 +36,7 @@ public class Reservation {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id_id")
-    private User userId;
+    private UserEntiy userId;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reservation_course_id")
@@ -82,11 +82,11 @@ public class Reservation {
         this.idTerrain = idTerrain;
     }
 
-    public User getUserId() {
+    public UserEntiy getUserId() {
         return userId;
     }
 
-    public void setUserId(final User userId) {
+    public void setUserId(final UserEntiy userId) {
         this.userId = userId;
     }
 
