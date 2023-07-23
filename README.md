@@ -3,6 +3,10 @@
 This app was created with Bootify.io - tips on working with the code [can be found here](https://bootify.io/next-steps/).
 Feel free to contact us for further questions.
 
+## About the project
+
+This project is designed to manage the courts and courses reservation for the Tennis Break Academy
+
 ## Development
 
 Update your local database connection in `application.properties` or create your own `application-local.properties` file to override
