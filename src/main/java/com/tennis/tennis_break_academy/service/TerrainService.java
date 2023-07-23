@@ -56,6 +56,7 @@ public class TerrainService {
         terrainDTO.setDescription(terrain.getDescription());
         terrainDTO.setName(terrain.getName());
         terrainDTO.setType(terrain.getType());
+        terrainDTO.setImage(terrain.getImage());
         return terrainDTO;
     }
 
@@ -66,6 +67,7 @@ public class TerrainService {
         terrain.setDescription(terrainDTO.getDescription());
         terrain.setName(terrainDTO.getName());
         terrain.setType(terrainDTO.getType());
+        terrain.setImage(terrainDTO.getImage());
         return terrain;
     }
 

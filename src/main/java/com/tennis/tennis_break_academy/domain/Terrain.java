@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import java.util.Set;
 
@@ -37,6 +38,10 @@ public class Terrain {
 
     @OneToMany(mappedBy = "idTerrain")
     private Set<Reservation> reservations;
+    
+    @Lob
+    @Column(length = 5242880) 
+    private byte[] image;
 
     @OneToMany(mappedBy = "terrainId")
     private Set<CourtTimeAvailability> courtTimeList;
@@ -122,6 +127,14 @@ public class Terrain {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
     
 

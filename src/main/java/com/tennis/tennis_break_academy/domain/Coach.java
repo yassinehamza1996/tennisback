@@ -38,7 +38,7 @@ public class Coach {
     private String phoneNumber;
     
     @Lob
-    @Column(length = 20480)
+    @Column(length = 5242880) 
     private byte[] image;
     
     @OneToOne(fetch = FetchType.LAZY)

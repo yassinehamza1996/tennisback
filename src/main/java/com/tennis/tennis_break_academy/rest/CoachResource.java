@@ -52,6 +52,14 @@ public class CoachResource {
         coachService.deleteCoach(idCoach);
         return ResponseEntity.noContent().build();
     }
+    
+    @DeleteMapping("/deleteAll")
+    @ApiResponse(responseCode = "204")
+    public ResponseEntity<Void> deleteAll(@RequestBody List<Integer> coachList) {
+        coachService.deleteAll(coachList);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }
 

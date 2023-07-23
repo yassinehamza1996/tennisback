@@ -32,7 +32,8 @@ public class CoachService {
     }
 
     public Integer createCoach(CoachDTO coachDTO) {
-        Coach coach = mapToEntity(coachDTO);
+        Coach coach = new Coach();
+        		mapToEntity(coachDTO, coach);
         Coach savedCoach = coachRepository.save(coach);
         return savedCoach.getIdCoach();
     }
@@ -50,6 +51,14 @@ public class CoachService {
         coachRepository.delete(coach);
     }
 
+    public void deleteAll(List<Integer> coachList) {
+    	
+    	for(int idCoach : coachList) {
+    	    Coach coach = coachRepository.findById(idCoach)
+                    .orElseThrow(NotFoundException::new);
+            coachRepository.delete(coach);
+    	}
+    }
     private CoachDTO mapToDTO(Coach coach) {
         CoachDTO coachDTO = new CoachDTO();
         coachDTO.setIdCoach(coach.getIdCoach());
@@ -68,6 +77,7 @@ public class CoachService {
         coach.setCin(coachDTO.getCin());
         coach.setMailAddress(coachDTO.getMailAddress());
         coach.setPhoneNumber(coachDTO.getPhoneNumber());
-        coach.setImage(coachDTO.getImage());
+        byte[] imageData = coachDTO.getImage();
+        coach.setImage(imageData);
     }
 }

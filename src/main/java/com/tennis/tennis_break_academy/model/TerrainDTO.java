@@ -21,9 +21,19 @@ public class TerrainDTO {
 
     private String name ;
     private String type;
+    private byte[] image;
     
     
-    public String getType() {
+    
+    public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+	public String getType() {
 		return type;
 	}
 
