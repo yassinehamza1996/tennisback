@@ -24,6 +24,8 @@ public class UserDTO {
 
     private Integer age;
 
+    private byte[] image;
+    
     @NotNull
     @Size(max = 255)
     private String cin;
@@ -39,7 +41,15 @@ public class UserDTO {
 
     
     
-    public String getPassword() {
+    public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+	public String getPassword() {
 		return password;
 	}
 

@@ -37,6 +37,11 @@ public class UserResource {
     public ResponseEntity<UserDTO> getUser(@PathVariable(name = "idUser") final Integer idUser) {
         return ResponseEntity.ok(userService.get(idUser));
     }
+    
+    @GetMapping("/finduser/{username}")
+    public ResponseEntity<UserDTO> getUser(@PathVariable(name = "username") final String username) {
+        return ResponseEntity.ok(userService.getUsername(username));
+    }
 
     @PostMapping
     @ApiResponse(responseCode = "201")

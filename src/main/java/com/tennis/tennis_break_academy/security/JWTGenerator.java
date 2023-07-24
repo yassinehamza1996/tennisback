@@ -6,16 +6,22 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 import static com.tennis.tennis_break_academy.security.Constants.EXPIRY_DATE;
 import static com.tennis.tennis_break_academy.security.Constants.SECRET_KEY;
 @Component
 public class JWTGenerator {
-    public String generateToken(Authentication authentication){
+    @SuppressWarnings("deprecation")
+	public String generateToken(Authentication authentication){
         String username = authentication.getName();
         Date currentDate = new Date();
-        Date expirationDate = new Date(currentDate.getTime() + EXPIRY_DATE);
+        LocalDate localDate = currentDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate expirationLocalDate = localDate.plusDays(1); // Adding one day
+        Date expirationDate = Date.from(expirationLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         String token = Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(currentDate)
@@ -25,13 +31,15 @@ public class JWTGenerator {
         return token;
     }
     public String getUsernameFromJWT(String token){
-        Claims claims = Jwts.parser()
+        @SuppressWarnings("deprecation")
+		Claims claims = Jwts.parser()
                 .setSigningKey(SECRET_KEY)
                 .parseClaimsJws(token)
                 .getBody();
         return claims.getSubject();
     }
-    public boolean validateToken(String token){
+    @SuppressWarnings("deprecation")
+	public boolean validateToken(String token){
         try{
             Jwts.parser()
                     .setSigningKey(SECRET_KEY)

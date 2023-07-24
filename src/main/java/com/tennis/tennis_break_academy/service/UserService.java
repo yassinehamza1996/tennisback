@@ -6,6 +6,7 @@ import com.tennis.tennis_break_academy.repos.UserRepository;
 import com.tennis.tennis_break_academy.util.NotFoundException;
 import java.util.List;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -27,6 +28,11 @@ public class UserService {
 
     public UserDTO get(final Integer idUser) {
         return userRepository.findById(idUser)
+                .map(user -> mapToDTO(user, new UserDTO()))
+                .orElseThrow(NotFoundException::new);
+    }
+    public UserDTO getUsername(final String username) {
+        return userRepository.findByusername(username)
                 .map(user -> mapToDTO(user, new UserDTO()))
                 .orElseThrow(NotFoundException::new);
     }
@@ -52,11 +58,14 @@ public class UserService {
         userDTO.setIdUser(user.getIdUser());
         userDTO.setFirstName(user.getFirstName());
         userDTO.setLastName(user.getLastName());
+        userDTO.setUsername(user.getUsername());
         userDTO.setAge(user.getAge());
         userDTO.setCin(user.getCin());
         userDTO.setPhoneNumber(user.getPhoneNumber());
         userDTO.setMailAddress(user.getMailAddress());
         userDTO.setRole(user.getRole());
+        userDTO.setImage(user.getImage());
+        userDTO.setIdUser(user.getIdUser());
         return userDTO;
     }
 
@@ -67,7 +76,12 @@ public class UserService {
         user.setCin(userDTO.getCin());
         user.setPhoneNumber(userDTO.getPhoneNumber());
         user.setMailAddress(userDTO.getMailAddress());
-        user.setRole(userDTO.getRole());
+        if(userDTO.getRole() != null) {
+        	user.setRole(userDTO.getRole());        	
+        }
+        if(userDTO.getImage() != null) {
+        	user.setImage(userDTO.getImage());        	
+        }
         return user;
     }
 

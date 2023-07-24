@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -52,6 +53,10 @@ public class UserEntiy {
     @Column
     private String password ;
     
+    @Lob
+    @Column(length = 5242880) 
+    private byte[] image;
+    
     @OneToMany(mappedBy = "userId")
     private Set<Reservation> reservationList;
     
@@ -62,6 +67,14 @@ public class UserEntiy {
     
 
     
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
 	public String getUsername() {
 		return username;
 	}
