@@ -64,4 +64,10 @@ public class TerrainResource {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/deleteAll")
+    @ApiResponse(responseCode = "204")
+    public ResponseEntity<Void> deleteAll(@RequestBody List<Integer> courtList) {
+    	terrainService.deleteAll(courtList);
+        return ResponseEntity.noContent().build();
+    }
 }
