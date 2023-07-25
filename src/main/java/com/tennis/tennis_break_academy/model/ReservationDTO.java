@@ -21,8 +21,19 @@ public class ReservationDTO {
 
     private Integer reservationCourseId ;
     
+    private String description;
     
-    public Integer getReservationCourseId() {
+    
+    
+    public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getReservationCourseId() {
 		return reservationCourseId;
 	}
 

@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -16,18 +17,21 @@ import static com.tennis.tennis_break_academy.security.Constants.SECRET_KEY;
 @Component
 public class JWTGenerator {
     @SuppressWarnings("deprecation")
-	public String generateToken(Authentication authentication){
+    public String generateToken(Authentication authentication) {
         String username = authentication.getName();
         Date currentDate = new Date();
-        LocalDate localDate = currentDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate expirationLocalDate = localDate.plusDays(1); // Adding one day
-        Date expirationDate = Date.from(expirationLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        
+        // Set expiration date to 1 hour from the current date
+        LocalDateTime expirationLocalDateTime = LocalDateTime.now().plusHours(1);
+        Date expirationDate = Date.from(expirationLocalDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
         String token = Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(currentDate)
                 .setExpiration(expirationDate)
-                .signWith(SignatureAlgorithm.HS256,SECRET_KEY)
+                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
                 .compact();
+
         return token;
     }
     public String getUsernameFromJWT(String token){

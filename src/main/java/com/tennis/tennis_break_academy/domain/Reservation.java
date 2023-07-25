@@ -29,7 +29,10 @@ public class Reservation {
 
     @Column
     private LocalDateTime endDate;
-
+    
+    @Column
+    private String description;
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_terrain_id")
     private Terrain idTerrain;
@@ -89,5 +92,22 @@ public class Reservation {
     public void setUserId(final UserEntiy userId) {
         this.userId = userId;
     }
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public ReservationCours getReservationCoursId() {
+		return reservationCoursId;
+	}
+
+	public void setReservationCoursId(ReservationCours reservationCoursId) {
+		this.reservationCoursId = reservationCoursId;
+	}
+    
 
 }

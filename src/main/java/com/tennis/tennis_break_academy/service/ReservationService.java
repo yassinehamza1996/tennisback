@@ -65,6 +65,7 @@ public class ReservationService {
         reservationDTO.setEndDate(reservation.getEndDate());
         reservationDTO.setIdTerrain(reservation.getIdTerrain() == null ? null : reservation.getIdTerrain().getIdTerrain());
         reservationDTO.setUserId(reservation.getUserId() == null ? null : reservation.getUserId().getIdUser());
+        reservationDTO.setDescription(reservation.getDescription());
         return reservationDTO;
     }
 
@@ -72,6 +73,7 @@ public class ReservationService {
             final Reservation reservation) {
         reservation.setIdUser(reservationDTO.getIdUser());
         reservation.setStartDate(reservationDTO.getStartDate());
+        reservation.setDescription(reservationDTO.getDescription());
         reservation.setEndDate(reservationDTO.getEndDate());
         final Terrain idTerrain = reservationDTO.getIdTerrain() == null ? null : terrainRepository.findById(reservationDTO.getIdTerrain())
                 .orElseThrow(() -> new NotFoundException("idTerrain not found"));
