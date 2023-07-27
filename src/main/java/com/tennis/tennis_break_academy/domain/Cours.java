@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
@@ -28,8 +29,21 @@ public class Cours {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reservation_cours_id")
     private ReservationCours reservationCoursId;
+    
+    @Lob
+    @Column(length = 5242880) 
+    private byte[] image;
+    
+    
+    public byte[] getImage() {
+		return image;
+	}
 
-    public Integer getIdCours() {
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+	public Integer getIdCours() {
         return idCours;
     }
 
