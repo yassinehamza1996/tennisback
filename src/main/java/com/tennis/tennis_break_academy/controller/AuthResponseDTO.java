@@ -14,6 +14,7 @@ public class AuthResponseDTO {
 		this.accessToken = accessToken;
 		this.tokenType = tokenType;
 	}
+	//constructor with accessToken field
     public AuthResponseDTO(String accessToken){
         this.accessToken = accessToken;
     }
