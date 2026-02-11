@@ -6,11 +6,14 @@ import lombok.*;
 @Builder
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class AuthResponseDTO {
     private String accessToken ;
     private String tokenType = "Bearer ";
+	public AuthResponseDTO(String accessToken,String tokenType)
+	{
+		this.accessToken = accessToken;
+		this.tokenType = tokenType;
+	}
     public AuthResponseDTO(String accessToken){
         this.accessToken = accessToken;
     }
